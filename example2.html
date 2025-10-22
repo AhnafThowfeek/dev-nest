@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Learn XML Request</h1>
+    <p id="info">THis sentence will change</p>
+    <button type="button" onclick="askReq()">Change here</button>
+
+    <script>
+        function askReq(){
+            var xml = new XMLHttpRequest();
+            xml.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("info").innerHTML = this.responseText;
+
+                };
+            };
+
+            var unID = new Date().getTime();
+            
+            xml.open("GET","text.txt?uid=" + unID, true );
+            xml.send();
+        }
+    </script>
+    
+</body>
+</html>
